@@ -6,15 +6,15 @@
   <title>Meu Portifolio</title>
 </head>
 <body>
-  <h1>
-    <?php 
-      echo "Portifolio do Gustavo";
-    ?>
-  </h1>
-  <p>
-    <?php
-      echo "TAG PHP"
-    ?>
-  </p>
+  <?php
+    $nome = "Gustavo";
+    $saudacao = "Oi, ";
+    $titulo = $saudacao . "Portifolio do " . $nome;
+    $subtitulo = "Seja bem vindo ao meu portifolio!!!";
+    $ano = 2024;
+  ?>
+  <h1><?=$titulo; ?></h1>
+  <p><?=$subtitulo; ?></p>
+  <p><?php echo $ano; ?></p>
 </body>
 </html>
