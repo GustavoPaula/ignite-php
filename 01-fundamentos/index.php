@@ -53,21 +53,9 @@
       return '<span style="color: red">Não finalizado</span>';      
     }
 
-    function filtro($itens, $funcao) {
-      $filtrados = [];
-
-      foreach ($itens as $item) {
-        if($funcao($item)) {
-          $filtrados [] = $item;
-        }
-      }
-
-      return $filtrados;
-    }
-
-    $projetosFiltrados = filtro($projetos, function ($projeto) {
-      return $projeto['ano'] === 2024 || $projeto['ano'] === 2021;
-    });
+    $projetosFiltrados = array_filter($projetos, function ($projeto) {
+      return $projeto['ano'] >= 2024;
+    }); 
 
   ?>
   <h1><?=$titulo; ?></h1>
