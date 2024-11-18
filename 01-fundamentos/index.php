@@ -22,25 +22,25 @@
       [
         "titulo" => "Meu Portfolio",
         "finalizado" => false,
-        "data" => "2024-11-13",
+        "ano" => 2021,
         "descricao" => "Meu primeiro Portfolio. Escrito em PHP e HTML."
       ],
       [
         "titulo" => "Lista de tarefas",
         "finalizado" => true,
-        "data" => "2024-11-11",
+        "ano" => 2022,
         "descricao" => "Lista de tarefas. Escrito em PHP e HTML."
       ],
       [
         "titulo" => "Controle de leitura de livros",
         "finalizado" => true,
-        "data" => "2024-11-11",
+        "ano" => 2024,
         "descricao" => "Controle de leitura de livros. Escrito em PHP e HTML."
       ],
       [
         "titulo" => "Mais um projeto",
         "finalizado" => false,
-        "data" => "2025-11-11",
+        "ano" => 2025,
         "descricao" => "Mais um projeto. Escrito em PHP e HTML."
       ]
       ];
@@ -53,21 +53,21 @@
       return '<span style="color: red">Não finalizado</span>';      
     }
 
-    function filtrarProjetosFinalizados($projetos, $finalizado = null) {
-      if(is_null($finalizado)){
-        return $projetos;
-      }
-      
+    function filtro($itens, $funcao) {
       $filtrados = [];
 
-      foreach ($projetos as $projeto) {
-        if($projeto['finalizado'] === $finalizado) {
-          $filtrados [] = $projeto;
+      foreach ($itens as $item) {
+        if($funcao($item)) {
+          $filtrados [] = $item;
         }
       }
 
       return $filtrados;
     }
+
+    $projetosFiltrados = filtro($projetos, function ($projeto) {
+      return $projeto['ano'] === 2024 || $projeto['ano'] === 2021;
+    });
 
   ?>
   <h1><?=$titulo; ?></h1>
@@ -77,7 +77,7 @@
   <hr>
 
   <ul>
-    <?php foreach (filtrarProjetosFinalizados($projetos, true) as $projeto): ?>
+    <?php foreach ($projetosFiltrados as $projeto): ?>
       <div
     <?php if((2024 - $ano) > 2): ?>
       style="background-color: burlywood;"
@@ -86,7 +86,7 @@
     <h2><?=$projeto['titulo'];?></h2>
     <p><?=$projeto['descricao'];?></p>
     <div>
-      <div><?=$projeto['data'];?></div>
+      <div><?=$projeto['ano'];?></div>
       <div>Projeto:
         <?php 
           echo verificarSeEstaFinalizado($projeto); 
