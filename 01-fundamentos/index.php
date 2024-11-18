@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Portifolio</title>
+  <title>Meu Portfolio</title>
 </head>
 <body>
   <?php
     $nome = "Gustavo";
     $saudacao = "Oi, ";
-    $titulo = $saudacao . "Portifolio do " . $nome;
-    $subtitulo = "Seja bem vindo ao meu portifolio!!!";
+    $titulo = $saudacao . "Portfolio do " . $nome;
+    $subtitulo = "Seja bem vindo ao meu Portfolio!!!";
     $ano = 2020;
 
-    $projeto = "Meu Portifolio";
+    $projeto = "Meu Portfolio";
     $finalizado = true; // true,1 ou false,0
     $dataDoProjeto = "2024-11-13";
-    $descricao = "Meu primeiro portifolio. Escrito em PHP e HTML.";
+    $descricao = "Meu primeiro Portfolio. Escrito em PHP e HTML.";
 
     $projetos = [
       [
-        "titulo" => "Meu portifolio",
+        "titulo" => "Meu Portfolio",
         "finalizado" => false,
         "data" => "2024-11-13",
-        "descricao" => "Meu primeiro portifolio. Escrito em PHP e HTML."
+        "descricao" => "Meu primeiro Portfolio. Escrito em PHP e HTML."
       ],
       [
         "titulo" => "Lista de tarefas",
@@ -31,7 +31,16 @@
         "data" => "2024-11-11",
         "descricao" => "Lista de tarefas. Escrito em PHP e HTML."
       ]
-    ]
+      ];
+    
+    function verificarSeEstaFinalizado($projeto) {
+      if($projeto['finalizado']) {
+        return '<span style="color: green">Finalizado</span>';
+      }
+
+      return '<span style="color: red">Não finalizado</span>';      
+    }
+
   ?>
   <h1><?=$titulo; ?></h1>
   <p><?=$subtitulo; ?></p>
@@ -51,11 +60,14 @@
     <div>
       <div><?=$projeto['data'];?></div>
       <div>Projeto:
-        <?php if(!$projeto['finalizado']): ?>
+        <?php 
+          echo verificarSeEstaFinalizado($projeto); 
+          ?>
+        <!-- <?php if(!$projeto['finalizado']): ?>
           <span style="color: red;">Não finalizado</span>
         <?php else: ?>
           <span style="color: green;">Finalizado</span>
-        <?php endif; ?>
+        <?php endif; ?> -->
       </div>
     </div>
   </div>
